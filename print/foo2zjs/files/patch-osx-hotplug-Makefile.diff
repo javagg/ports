@@ -1,0 +1,13 @@
+--- osx-hotplug/Makefile.orig	2011-07-23 02:59:04.000000000 +0800
++++ osx-hotplug/Makefile	2011-10-16 02:35:48.000000000 +0800
+@@ -1,7 +1,8 @@
+ LANG=C
+ UNAME := $(shell uname)
+-PREFIX= /usr
+-PREFIX= $(DESTDIR)/usr
++#PREFIX= /usr
++#PREFIX= $(DESTDIR)/usr
++#PREFIX= $(DESTDIR)/opt/local
+ BIN=    $(PREFIX)/bin
+ MANDIR=$(PREFIX)/share/man
+ INSTALL=install

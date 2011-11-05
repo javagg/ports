@@ -1,0 +1,13 @@
+--- icc2ps/Makefile.orig	2010-11-27 18:04:56.000000000 +0800
++++ icc2ps/Makefile	2011-10-16 02:34:36.000000000 +0800
+@@ -1,7 +1,8 @@
+ UNAME := $(shell uname)
+ 
+-PREFIX=	/usr
+-PREFIX=	$(DESTDIR)/usr
++#PREFIX=	/usr
++#PREFIX=	$(DESTDIR)/usr
++#PREFIX=	$(DESTDIR)/opt/local
+ BIN=	$(PREFIX)/bin
+ MANDIR=$(PREFIX)/share/man
+ 

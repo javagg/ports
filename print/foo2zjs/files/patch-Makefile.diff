@@ -1,0 +1,24 @@
+--- Makefile.orig	2011-07-31 21:28:43.000000000 +0800
++++ Makefile	2011-10-16 02:09:28.000000000 +0800
+@@ -17,9 +17,10 @@
+ VERSION=0.0
+ 
+ # Installation prefix...
+-PREFIX=/usr/local
+-PREFIX=/usr
+-PREFIX=$(DESTDIR)/usr
++#PREFIX=/usr/local
++#PREFIX=/usr
++#PREFIX=$(DESTDIR)/usr
++#PREFIX=$(prefix)
+ 
+ # Pathnames for this package...
+ BIN=$(PREFIX)/bin
+@@ -38,6 +39,7 @@
+ 
+ # Pathnames for referenced packages...
+ FOODB=$(DESTDIR)/usr/share/foomatic/db/source
++FOODB=$(PREFIX)/share/foomatic/db/source
+ 
+ # User ID's
+ LPuid=-oroot

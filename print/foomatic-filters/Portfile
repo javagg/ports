@@ -1,0 +1,39 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+
+name                foomatic-filters
+version             4.0.6
+categories          print
+platforms           darwin
+license             GPL-2
+maintainers         alexlee
+description         Round Robin Database
+long_description    RRDtool is a system to store and display time-series data
+homepage            http://people.ee.ethz.ch/~oetiker/webtools/rrdtool/
+master_sites        http://www.openprinting.org/download/foomatic/
+
+checksums           md5     9bca3d3d83192a3741a34bd9b1859b1e \
+                    sha1    5ebeb6fbf856433053bb5dc8d6a2fde824b88efd \
+                    rmd160  a218d8d279cb7256194b11323ed823095f65e152
+
+depends_lib         port:perl5 \
+                    port:gawk \
+                    port:ghostscript
+
+patchfiles          patch-Makefile.in.diff
+
+configure.args  
+post-destroot {
+    xinstall -d ${destroot}${prefix}/libexec
+    ln -sf /usr/libexec/cups ${destroot}${prefix}/libexec/
+}
+#post-destroot {
+#    set cupsfilterdir ${destroot}${prefix}/libexec/cups/filter
+#    set cupsbackenddir ${destroot}${prefix}/libexec/cups/backend
+#    file mkdir ${cupsfilterdir}
+#    file mkdir ${cupsbackenddir}
+#    ln -sf ${destroot}$(prefix)/foomatic-rip ${cupsfilterdir}
+#    xinstall -m 0755 beh ${cupsbackenddir}
+#}

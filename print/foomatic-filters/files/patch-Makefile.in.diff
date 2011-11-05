@@ -1,0 +1,50 @@
+--- Makefile.in.orig	2011-10-17 18:23:35.000000000 +0800
++++ Makefile.in	2011-10-17 19:07:39.000000000 +0800
+@@ -196,6 +196,11 @@
+ SBINDIR = $(sbindir)
+ MANDIR = $(mandir)
+ ETCDIR = $(sysconfdir)/foomatic
++
++CUPS = $(prefix)/libexec/cups
++CUPS_BACKENDS = $(prefix)/libexec/cups/backend
++CUPS_FILTERS = $(prefix)/libexec/cups/filter
++
+ foomatic_ripdir = .
+ foomatic_rip_SOURCES = \
+ 	foomaticrip.c \
+@@ -610,7 +615,8 @@
+ 
+ 
+ # The install rule should check for kitloads and avoid stomping.  It doesn't
+-install: install-main install-cups install-ppr
++#install: install-main install-cups install-ppr
++install: install-main install-cups
+ 
+ install-main: install-bin install-man
+ 
+@@ -660,12 +666,13 @@
+ # Remove editor backup and temporary files
+ remove-trash:
+ 	for m in $(TRASHFILES); do \
+-	  find . -name "$$m" -xtype f -exec rm -f "{}" \; ; \
++          find . -name "$$m" -type fl -exec rm -f "{}" \; ; \
+ 	done
+ 
+ # Uninstall an installed Foomatic
+ 
+-uninstall:	uninstall-cups uninstall-ppr uninstall-main
++#uninstall:	uninstall-cups uninstall-ppr uninstall-main
++uninstall:	uninstall-cups uninstall-main
+ 
+ uninstall-main:	uninstall-bin uninstall-man
+ 
+@@ -694,7 +701,8 @@
+ 	rmdir $(DESTDIR)$(PPR_LIB) || :
+ 	rmdir $(DESTDIR)$(PPR) || :
+ 
+-uninstall-man:	check-config
++#uninstall-man:	check-config
++uninstall-man:
+ 	for m in $(bin_PROGRAMS); do \
+ 	  rm -f $(DESTDIR)$(MANDIR)/man1/$$m.*; \
+ 	done
